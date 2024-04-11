@@ -1,10 +1,10 @@
 # 1. 라이브러리 임포트
 import streamlit as st
 from openai import OpenAI
-client = OpenAI()
 
 # 2. 기능 구현 함수
-def askGpt(prompt):
+def askGpt(prompt, apikey):
+    client = OpenAI(api_key = apikey)
     messages_prompt = [{"role":"system", "content":prompt}]
     response = client.chat.completions.create(
       model="gpt-3.5-turbo",
@@ -16,11 +16,14 @@ def askGpt(prompt):
 # 3. 메인 함수
 def main():
     st.set_page_config(page_title="요약 프로그램")
+    # session state 초기화
+    if "OPENAI_API" not in st.session_state:
+        st.session_state["OPENAI_API"] = ""
     # 사이드바
     with st.sidebar:
         open_apikey = st.text_input(label='OPENAI API 키', placeholder='', value='',type='password')
         if open_apikey:
-            client.api_key = open_apikey
+            st.session_state["OPENAI_API"] = open_apikey
         st.markdown('-------')
     #메인공간
     st.header("요약 프로그램")
@@ -39,7 +42,7 @@ def main():
         - Use the format of a bullet point.
     -text : {text}
     '''
-        st.info(askGpt(prompt))
+        st.info(askGpt(prompt, st.session_state["OPENAI_API"]))
 
 if __name__=='__main__':
     main()
