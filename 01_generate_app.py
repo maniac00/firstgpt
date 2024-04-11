@@ -18,7 +18,7 @@ def main():
     st.set_page_config(page_title="광고 문구 생성 프로그램")
     # 사이드바
     with st.sidebar:
-        open_apikey = st.textinput(label='OPENAI API 키:', placeholder='', value='',type='password'
+        open_apikey = st.text_input(label='OPENAI API KEY', placeholder='', value='',type='password')
         if open_apikey:
             client.api_key = open_apikey
         st.markdown('-------')
