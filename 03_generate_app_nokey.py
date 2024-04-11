@@ -18,13 +18,13 @@ def main():
     st.set_page_config(page_title="광고 문구 생성 프로그램")
     # session state 초기화
     if "OPENAI_API" not in st.session_state:
-        st.session_state["OPENAI_API"] = ""
+        st.session_state["OPENAI_API"] = st.secrets["openai"]["api_key"]
     # 사이드바
-    with st.sidebar:
-        open_apikey = st.text_input(label='OPENAI API KEY', placeholder='', value='',type='password')
-        if open_apikey:
-            st.session_state["OPENAI_API"] = open_apikey
-        st.markdown('-------')
+#    with st.sidebar:
+#        open_apikey = st.text_input(label='OPENAI API KEY', placeholder='', value='',type='password')
+#        if open_apikey:
+#            st.session_state["OPENAI_API"] = open_apikey
+#        st.markdown('-------')
     #메인공간
     st.header("광고 문구 생성 프로그램")
     st.markdown('---')
