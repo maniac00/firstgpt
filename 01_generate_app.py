@@ -1,12 +1,12 @@
 # 1. 라이브러리 임포트
 import streamlit as st
 from openai import OpenAI
-#openai = OpenAI()
+client = OpenAI()
 
 # 2. 기능 구현 함수
 def askGpt(prompt):
     messages_prompt = [{"role":"system", "content":prompt}]
-    response = openai.chat.completions.create(
+    response = client.chat.completions.create(
       model="gpt-3.5-turbo",
       messages=messages_prompt
     )
@@ -20,7 +20,7 @@ def main():
     with st.sidebar:
         open_apikey = st.textinput(label='OPENAI API 키:', placeholder='', value='',type='password'
         if open_apikey:
-            openai.api_key = open_apikey
+            client.api_key = open_apikey
         st.markdown('-------')
     #메인공간
     st.header("광고 문구 생성 프로그램")
