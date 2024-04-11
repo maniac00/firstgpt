@@ -1,7 +1,7 @@
 # 1. 라이브러리 임포트
 import streamlit as st
 from openai import OpenAI
-openai = OpenAI()
+#openai = OpenAI()
 
 # 2. 기능 구현 함수
 def askGpt(prompt):
@@ -17,11 +17,11 @@ def askGpt(prompt):
 def main():
     st.set_page_config(page_title="광고 문구 생성 프로그램")
     # 사이드바
-#    with st.sidebar:
-        #open_apikey = openai.api_key
-        #if open_apikey:
-        #    openai.api_key = open_apikey
-#       st.markdown('-------')
+    with st.sidebar:
+        open_apikey = st.textinput(label='OPENAI API 키:', placeholder='', value='',type='password'
+        if open_apikey:
+            openai.api_key = open_apikey
+        st.markdown('-------')
     #메인공간
     st.header("광고 문구 생성 프로그램")
     st.markdown('---')
